@@ -17,6 +17,8 @@ def parseLengthWithUnits( str ):
   s = str.strip()
   if s[-2:] == 'px':
     s = s[:-2]
+  elif s[-2:] == 'mm':
+    s = s[:-2]
   elif s[-1:] == '%':
     u = '%'
     s = s[:-1]
@@ -218,6 +220,8 @@ class SvgParser:
         return v
       elif u == '%':
         return float( default ) * v / 100.0
+      elif u == 'mm':
+        return v / 0.28222
       else:
         # Unsupported units
         return None
